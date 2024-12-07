@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dash Pricing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for the header section */
+    .navbar {
+      background-color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* Default to container for larger screens */
+#navbarContainer {
+  width: 100%; /* Default container */
+}
+
+/* Media Query for screens less than 1200px */
+@media (max-width: 1200px) {
+  #navbarContainer {
+    width: 100%;
+    padding: 0; /* Optional: remove padding for full-width look */
+  }
+  .navbar-nav {
+    margin-left: 0; /* Remove any left margin */
+    margin-right: 0; /* Optional: remove right margin */
+  }
+}
+
+@media (max-width: 578px) {
+  #navbar-toggler {
+    margin-left: 20px; /* Adjust the value as needed */
+  }
+}
+
+@media (max-width: 578px) {
+  #navbarNav {
+    margin-left: 30px; /* Adjust the value as needed */
+  }
+  
+  .navbar-nav {
+    margin-left: 0; /* Optional: remove any existing margin on the list */
+  }
+}
+
+
+
+    .pricing-header {
+      position: relative;
+      padding: 4rem 1rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .pricing-header h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #2C2C2C;
+    }
+    .pricing-header p {
+      color: #555;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+  
+  
+    .card {
+  border: none;
+  border-radius: 25px;
+  background-image: url('images/image\ 70.png'); /* Replace with your image URL */
+  background-size: cover; /* Ensure the image covers the card */
+  background-position: center; /* Align the image centrally */
+  color: #fff; /* Ensure text is readable */
+  min-height: 480px; /* Maintain consistent height for the card */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card1 {
+  border: none;
+  border-radius: 25px;
+  background-image: url('images/image\ 72.png'); /* Replace with your image URL */
+  background-size: cover; /* Ensure the image covers the card */
+  background-position: center; /* Align the image centrally */
+  color: #fff; /* Ensure text is readable */
+  min-height: 480px; /* Maintain consistent height for the card */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardp {
+  border: none;
+  border-radius: 25px;
+  background-image: url('images/Group\ 106.png'); /* Replace with your image URL */
+  background-size: cover; /* Ensure the image covers the card */
+  background-position: center; /* Align the image centrally */
+  color: #fff; /* Ensure text is readable */
+  min-height: 480px; /* Maintain consistent height for the card */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+ 
+    .currency-options {
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+    .currency-options button {
+      margin: 0 0.5rem;
+      border: 1px solid #ddd;
+      background-color: transparent;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+    }
+    .currency-options .active {
+      background-color: #FF7A00;
+      color: #fff;
+      border-color: #FF7A00;
+    }
+
+    @media (max-width: 768px) {
+  .currency-options {
+    text-align: center;
+    padding-left: 1rem; /* Optional: add padding for spacing */
+  }
+  .currency-options button {
+    margin: 0.5rem 0; /* Adjust margin for vertical alignment */
+  }
+}
+@media (max-width: 513px) {
+  .currency-options span {
+    display: none;
+  }
+  .currency-options {
+    text-align: center; /* Center align buttons */
+    padding-left: 0; /* Remove any padding */
+    margin-top: 0px;
+  }
+}
+@media (min-width: 513px) {
+  .Hide {
+    display: none;
+  }
+}
+
+/* Display and center below 497px */
+@media (max-width: 513px) {
+  .Hide {
+    display: block;
+    text-align: center; /* Center the text */
+    margin: 0 auto;     /* Center the element */
+  }
+}
+
+    :root {
+      --white: #302842;
+      --active-color: white; /* Purple color for active state */
+      --inactive-color: #FFFFFF; /* Light gray for inactive state */
+    }
+
+   
+
+    .switch-wrapper {
+      position: relative;
+      display: inline-flex;
+      padding: 4px;
+      border: 5px solid #302842;
+      border-radius: 30px;
+      background: var(--white);
+    }
+
+    .switch-wrapper [type="radio"] {
+      position: absolute;
+      left: -9999px;
+    }
+
+    .switch-wrapper label {
+      padding: 8px 33px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: var(--inactive-color); /* Initial color for inactive state */
+      z-index: 1; /* To ensure text is above the highlighter */
+    }
+
+ 
+
+    .switch-wrapper [type="radio"]:checked#monthly ~ label[for="monthly"],
+    .switch-wrapper [type="radio"]:checked#yearly ~ label[for="yearly"] {
+      color: var(--white); /* White color for text when selected */
+    }
+
+  
+
+    .switch-wrapper [type="radio"]:checked#monthly + label[for="yearly"] {
+      background: var(--active-color);
+    }
+
+    .highlighter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background-color: var(--active-color);
+      border-radius: 30px;
+      transition: transform 0.3s ease;
+      z-index: 0; /* Ensure highlighter is behind the labels */
+    }
+
+    #monthly:checked ~ .highlighter {
+      transform: translateX(0);
+    }
+
+    #yearly:checked ~ .highlighter {
+      transform: translateX(100%);
+    }
+    .switch-wrapper label[for="monthly"] {
+      font-size: 16px; /* Larger font size for 'Monthly' */
+      font-weight: 600;
+    }
+
+    .switch-wrapper label[for="yearly"] {
+      font-size: 16px; /* Smaller font size for 'Yearly' */
+      font-weight: 600;
+
+    }
+
+    /* Font size for the heading */
+.custom-heading {
+  font-size: 30px;
+}
+
+/* Font size for the main price */
+.custom-price {
+  font-size: 60px;
+}
+
+/* Font size for the sub-price */
+.custom-price-sub {
+  font-size: 28px;
+}
+
+/* Font size for the description text */
+.custom-description {
+  font-size: 23px;
+  width: 50%;  /* Make description take full width */
+
+}
+
+@media (max-width: 1200px) and (min-width: 993px) {
+  .custom-heading {
+    font-size: 25px;  /* Reduce font size for smaller screens */
+  }
+
+  .custom-price {
+    font-size: 40px;  /* Reduce font size for smaller screens */
+  }
+
+  .custom-price-sub {
+    font-size: 24px;  /* Adjust the sub-price font size */
+  }
+
+  .custom-description {
+    font-size: 20px;  /* Reduce the description font size */
+    width: 65%;  /* Make description take full width */
+
+  }
+}
+
+
+@media (max-width: 992px) and (min-width: 768px) {
+  .custom-heading {
+    font-size: 25px;  /* Reduce font size for smaller screens */
+  }
+
+  .custom-price {
+    font-size: 33px;  /* Reduce font size for smaller screens */
+  }
+
+  .custom-price-sub {
+    font-size: 22px;  /* Adjust the sub-price font size */
+  }
+
+  .custom-description {
+    font-size: 20px;  /* Reduce the description font size */
+    width: 100%;  /* Make description take full width */
+
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container" id="navbarContainer">
+      <!-- Custom Menu Button (Image) -->
+      <a class="navbar-toggler d-inline-block" href="#" data-bs-toggle="collapse" data-bs-target="#navbarNav" id="navbar-toggler" style="border: none; background: transparent;">
+        <img src="images/Group.png" alt="Menu" style="width: 30px; height: auto;">
+    </a>
+    
+  
+      <!-- Brand -->
+      <a class="navbar-brand" href="#">Dash</a>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto d-flex justify-content-center gap-4">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="featuresDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Features
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="featuresDropdown">
+                <li><a class="dropdown-item" href="#">Feature 1</a></li>
+                <li><a class="dropdown-item" href="#">Feature 2</a></li>
+                <li><a class="dropdown-item" href="#">Feature 3</a></li>
+              </ul>
+            </li>
+                          <li class="nav-item"><a class="nav-link" href="#">Our Customers</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Resources</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+          </ul>
+          <a href="#" class="btn me-3" style="font-size: 12px; font-weight: 800; background-color: #302842; color: white; border-radius: 30px; padding: 10px 20px;">Start for Free</a>
+        <a href="#" class="btn" style="font-size: 12px; font-weight: 800; background-color: white; color: #302842; border: 2px solid #302842; border-radius: 30px; padding: 10px 20px;">Book a Demo</a>
+
+      </div>
+      
+    </div>
+  </nav>
+  
+  
+  
+<!-- Header Section -->
+<header class="pricing-header" style="position: relative; z-index: 1; transform: translateY(140px); margin-top: -100px;">
+    <div class="container">
+    <h1 style="font-size: 50px; color: #0F0F10;">Who said DAM has to cost the earth?</h1>
+    <p style="font-size: 20px; font-weight: 600; color: #474A4E;">Dash - the Digital Asset Management system for growing brands</p>
+    <p class="w-75 mx-auto" style="font-size: 18px; font-weight: 400; color: #474A4E;">
+        With affordable digital asset management pricing, you can change the way you find and use your content - without breaking the bank.
+      </p>
+      
+  </div>
+</header>
+
+
+<div class="d-flex justify-content-center mt-0" 
+     style="background-image: url('images/Lozenge\ BG.png'); background-size: cover; background-position: center; height: 370px; align-items: center; margin-bottom: -105px;">
+     <div class="switch-wrapper">
+      <input id="monthly" type="radio" name="switch" checked>
+      <input id="yearly" type="radio" name="switch">
+      <label for="monthly">Monthly</label>
+      <label for="yearly">Annually</label>
+      <span class="highlighter"></span>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Pricing Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-4 mb-md-0 mb-3">
+        <div class="card p-4 d-flex flex-column justify-content-between" style="height: 100%;">
+              <div>
+                <h5 class="ms-3 mt-5 text-start custom-heading" >Starting</h5>
+                <h3 class="ms-3 mt-4 text-start custom-price">£25<span class="custom-price-sub">/month</span> </h3>
+              </div>
+              <div>
+                <p class="ms-3 mb-4 text-start  custom-description">Entry-level DAM for starting out.</p>
+
+                <div class="me-3 mb-4 d-flex justify-content-end">
+                    <button class="btn btn-light" style="border-radius: 30px; font-size: 14px; font-weight: 800; padding: 15px 25px;">Start your free trial</button>
+                </div>
+              </div>
+            </div>
+        </div>
+          
+        <div class="col-md-4 mb-md-0 mb-3">
+          <div class="card1 p-4 d-flex flex-column justify-content-between" style="height: 100%;">
+              <div>
+                <h5 class="ms-3 mt-5 text-start custom-heading">Growing</h5>
+                <h3 class="ms-3 mt-4 mb-0 text-start custom-price">£199<span class="custom-price-sub">/month</span> </h3>
+                <p class="ms-3 mb-4 text-start custom-price-sub">+optional onboarding</p>
+
+              </div>
+              <div>
+                <p class="ms-3 mb-4 text-start custom-description">Fast, smart DAM for small teams.</p>
+
+                <div class="me-3 mb-4 d-flex justify-content-end">
+                    <button class="btn btn-light" style="border-radius: 30px; font-size: 14px; font-weight: 800; padding: 15px 25px;">Start your free trial</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-md-0 mb-3">
+          <div class="cardp p-4 d-flex flex-column justify-content-between" style="height: 100%;">
+              <div>
+                <h5 class="ms-3 mt-5 text-start custom-heading">Dashing</h5>
+                <h3 class="ms-3 mt-4 mb-0 text-start custom-price">£379<span class="custom-price-sub">/month</span> </h3>
+                <p class="ms-3 mb-4 text-start custom-price-sub">+optional onboarding</p>
+
+              </div>
+              <div>
+                <p class="ms-3 mb-4 text-start custom-description">Powerful DAM for bigger brands.</p>
+
+                <div class="me-3 mb-4 d-flex justify-content-end">
+                    <button class="btn btn-light" style="border-radius: 30px; font-size: 14px; font-weight: 800; padding: 15px 25px;">Start your free trial</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+
+    
+
+    
+  </div>
+
+  
+</section>
+<span class="Hide" style="font-size: 20px; font-weight: 600;">Show prices in:</span>
+
+<div class="currency-options">
+
+  <span style="font-size: 20px; font-weight: 600;">Show prices in:</span>
+  <button class="active">GBP</button>
+  <button>EUR</button>
+  <button>USD</button>
+  <button>AUD</button>
+  <button>CAD</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
